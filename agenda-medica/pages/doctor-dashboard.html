@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor - MediApp</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2>Médico</h2>
+            <ul class="sidebar-menu">
+                <li><a href="#solicitadas" class="menu-link active" data-section="solicitadas">📋 Citas Solicitadas</a></li>
+                <li><a href="#programadas" class="menu-link" data-section="programadas">✅ Citas Programadas</a></li>
+                <li><a href="#completadas" class="menu-link" data-section="completadas">✔️ Completadas</a></li>
+                <li><a href="#horarios" class="menu-link" data-section="horarios">🕐 Mi Horario</a></li>
+                <li><a href="#notificaciones" class="menu-link" data-section="notificaciones">🔔 Notificaciones</a></li>
+                <li><a href="#perfil" class="menu-link" data-section="perfil">👤 Mi Perfil</a></li>
+                <li><a href="#" id="logoutBtn">🚪 Cerrar Sesión</a></li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- HEADER -->
+            <div class="header">
+                <h1>Area del Médico</h1>
+                <div class="user-info">
+                    <div class="user-avatar" id="userInitials">DR</div>
+                    <span id="userName">Médico</span>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: CITAS SOLICITADAS -->
+            <div id="solicitadas" class="section">
+                <div class="card">
+                    <h3>Citas Solicitadas Pendientes</h3>
+                    <div id="citasSolicitadasList" class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Paciente</th>
+                                    <th>Motivo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="solicitadasTableBody">
+                                <tr>
+                                    <td colspan="5" class="text-center">Cargando citas...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: CITAS PROGRAMADAS -->
+            <div id="programadas" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Citas Programadas</h3>
+                    <div id="citasProgramadasList" class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Paciente</th>
+                                    <th>Motivo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="programadasTableBody">
+                                <tr>
+                                    <td colspan="5" class="text-center">No hay citas programadas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: CITAS COMPLETADAS -->
+            <div id="completadas" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Citas Completadas</h3>
+                    <div id="citasCompletadasList" class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Paciente</th>
+                                    <th>Estado</th>
+                                    <th>Ver Detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody id="completadasTableBody">
+                                <tr>
+                                    <td colspan="4" class="text-center">No hay citas completadas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: HORARIOS -->
+            <div id="horarios" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Mi Horario de Consultas</h3>
+                    <form id="horarioForm" style="display: grid; gap: 15px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div>
+                                <label for="dia">Día de la Semana</label>
+                                <select id="dia" name="dia" required>
+                                    <option value="">Selecciona día</option>
+                                    <option value="lunes">Lunes</option>
+                                    <option value="martes">Martes</option>
+                                    <option value="miercoles">Miércoles</option>
+                                    <option value="jueves">Jueves</option>
+                                    <option value="viernes">Viernes</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="horaInicio">Hora Inicio</label>
+                                <input type="time" id="horaInicio" name="horaInicio" required>
+                            </div>
+
+                            <div>
+                                <label for="horaFin">Hora Fin</label>
+                                <input type="time" id="horaFin" name="horaFin" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Guardar Horario</button>
+                    </form>
+
+                    <div id="horariosTable" style="margin-top: 20px;">
+                        <h4>Mis Horarios Configurados:</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Día</th>
+                                    <th>Inicio</th>
+                                    <th>Fin</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="horariosTableBody">
+                                <tr>
+                                    <td colspan="4" class="text-center">Cargando horarios...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: NOTIFICACIONES -->
+            <div id="notificaciones" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Notificaciones</h3>
+                    <div id="notificacionesList">
+                        <p class="text-center">Cargando notificaciones...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: PERFIL -->
+            <div id="perfil" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Mi Perfil Médico</h3>
+                    <div style="display: grid; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Nombre</label>
+                            <input type="text" id="profileNombre" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Apellido</label>
+                            <input type="text" id="profileApellido" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Especialidad</label>
+                            <input type="text" id="profileEspecialidad" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Correo Electrónico</label>
+                            <input type="email" id="profileEmail" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Teléfono</label>
+                            <input type="tel" id="profileTelefono" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA VER/EDITAR CITA -->
+    <div id="citaDetailModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Detalles de la Cita</h2>
+            <div id="citaDetailContent"></div>
+            <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button id="aceptarCitaBtn" class="btn-success" style="display: none;">✓ Aceptar Cita</button>
+                <button id="rechazarCitaBtn" class="btn-danger" style="display: none;">✗ Rechazar Cita</button>
+                <button id="completarCitaBtn" class="btn-primary" style="display: none;">Marcar como Realizado</button>
+                <button class="close" onclick="document.getElementById('citaDetailModal').style.display = 'none'">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="doctor-dashboard.js"></script>
+</body>
+</html>

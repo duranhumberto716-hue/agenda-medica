@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Área - MediApp</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2>Paciente</h2>
+            <ul class="sidebar-menu">
+                <li><a href="#citas" class="menu-link active" data-section="citas">📋 Mis Citas</a></li>
+                <li><a href="#nueva-cita" class="menu-link" data-section="nueva-cita">➕ Nueva Cita</a></li>
+                <li><a href="#historial" class="menu-link" data-section="historial">📜 Historial</a></li>
+                <li><a href="#notificaciones" class="menu-link" data-section="notificaciones">🔔 Notificaciones</a></li>
+                <li><a href="#perfil" class="menu-link" data-section="perfil">👤 Mi Perfil</a></li>
+                <li><a href="#" id="logoutBtn">🚪 Cerrar Sesión</a></li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- HEADER -->
+            <div class="header">
+                <h1>Mi Área de Paciente</h1>
+                <div class="user-info">
+                    <div class="user-avatar" id="userInitials">PA</div>
+                    <span id="userName">Paciente</span>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: MIS CITAS -->
+            <div id="citas" class="section">
+                <div class="card">
+                    <h3>Mis Citas</h3>
+                    <div id="citasList" class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Médico</th>
+                                    <th>Especialidad</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="citasTableBody">
+                                <tr>
+                                    <td colspan="6" class="text-center">Cargando citas...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: NUEVA CITA -->
+            <div id="nueva-cita" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Solicitar Nueva Cita</h3>
+                    <form id="nuevaCitaForm" class="form-group" style="gap: 15px;">
+                        <div>
+                            <label for="especialidad">Especialidad</label>
+                            <select id="especialidad" name="especialidad" required>
+                                <option value="">Selecciona especialidad</option>
+                                <option value="cardiologia">Cardiología</option>
+                                <option value="dermatologia">Dermatología</option>
+                                <option value="pediatria">Pediatría</option>
+                                <option value="oftalmologia">Oftalmología</option>
+                                <option value="traumatologia">Traumatología</option>
+                                <option value="neurologia">Neurología</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="medico">Médico</label>
+                            <select id="medico" name="medico" required>
+                                <option value="">Selecciona médico</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="fecha">Fecha</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+
+                        <div>
+                            <label for="hora">Hora</label>
+                            <select id="hora" name="hora" required>
+                                <option value="">Selecciona hora</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="motivo">Motivo de la consulta</label>
+                            <textarea id="motivo" name="motivo" placeholder="Describe brevemente el motivo..." rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Solicitar Cita</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: HISTORIAL -->
+            <div id="historial" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Historial de Citas</h3>
+                    <div id="historialList" class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Médico</th>
+                                    <th>Especialidad</th>
+                                    <th>Estado</th>
+                                    <th>Ver Detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historialTableBody">
+                                <tr>
+                                    <td colspan="5" class="text-center">No hay historial disponible</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: NOTIFICACIONES -->
+            <div id="notificaciones" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Notificaciones</h3>
+                    <div id="notificacionesList">
+                        <p class="text-center">Cargando notificaciones...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: PERFIL -->
+            <div id="perfil" class="section" style="display: none;">
+                <div class="card">
+                    <h3>Mi Perfil</h3>
+                    <div style="display: grid; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Nombre</label>
+                            <input type="text" id="profileNombre" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Apellido</label>
+                            <input type="text" id="profileApellido" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Correo Electrónico</label>
+                            <input type="email" id="profileEmail" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600;">Teléfono</label>
+                            <input type="tel" id="profileTelefono" readonly style="background: #f3f4f6; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA VER DETALLES DE CITA -->
+    <div id="citaDetailModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Detalles de la Cita</h2>
+            <div id="citaDetailContent"></div>
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+                <button id="cancelCitaBtn" class="btn-danger">Cancelar Cita</button>
+                <button class="close" onclick="document.getElementById('citaDetailModal').style.display = 'none'">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/firebase-config.js"></script>
+    <script src="patient-dashboard.js"></script>
+</body>
+</html>
